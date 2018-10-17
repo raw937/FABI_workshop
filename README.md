@@ -7,5 +7,5 @@
 #### Presenters:	
 - Dr. Maria Vivas - FABI, Univesity of Pretoria, South Africa
 - Dr. Matin Kemler - Ruhr-University Bochum, Germany
--Dr. Richard Allen White III - Washington State University, USA
+- Dr. Richard Allen White III - Washington State University, USA
 
