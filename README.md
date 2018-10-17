@@ -1,4 +1,4 @@
-## FABI - Metagenomics and metatranscriptomics workshop - Forestry and Agricultural Biotechnology Insititute (FABI)
+## FABI - Metagenomics and metatranscriptomics workshop 
 
 
 ### Venue: 	Forestry and Agricultural Biotechnology Insititute (FABI), University of Pretoria, South Africa
