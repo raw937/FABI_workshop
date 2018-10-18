@@ -27,7 +27,8 @@
 
 ### lists your files (long format)
 ```ls -l```
-Gives file sizes, permissions, owner, last modification
+
+#### Gives file sizes, permissions, owner, last modification
 
                           
                          # lists your files in 'long format', which contains the exact size of the file, who owns the file and who has the right to look at it, and when it was last modified
