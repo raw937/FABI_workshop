@@ -34,18 +34,52 @@
 ### Best ls command 
 ```ls -thor``` 
 
-- -t sort by modification time, newest first                      
-###### -h human-readable
-######
+- -t  sort by modification time, newest first                      
+- -h  --human-readable
+- -o  like -l, but do not list group information
+- -r  --reverse, reverse order while sorting
+
+## A1.2 Link command -> 1n
 
 ### Creates symbolic link to file                       
-```ln -s <filename> <link>```       
-touch <filename>              # creates or updates your file
+```ln -s <filename> <link>``` 
+
+## A1.3 Touch command -> touch
+
+### creates or updates your file (just creates)
+```touch <filename>```
+
+## A1.4 View a file 
+
+### Views file from the beginning - allows scrolling down a file
+```more <filename>```
+
+### Views file from the beginning - first 10 lines
+```head <filename>```
+
+### Views file from the beginning - first 100 lines
+```head -100 <filename>```
+
+### Views file from the beginning - first 1000 lines
+```head -1000 <filename>```
+
+### Views file from the end - last 10 lines
+```tail <filename>```
+
+### Views file from the end - last 100 lines
+```tail -100 <filename>```
+
+### Views file from the beginning - last 1000 lines
+```tail -1000 <filename>```
+
+### View, credit and edit a line (main text editors)
+```vim <filename>```
+```nano <filename>```
+```gedit <filename>```
+```emacs <filename>```             
+  
+
 cat > <filename>              # places standard input into file
-more <filename>               # shows the first part of a file (move with space and type q to quit)
-head <filename>               # outputs the first 10 lines of file
-tail <filename>               # outputs the last 10 lines of file (useful with -f option)
-emacs <filename>              # lets you create and edit a file
 mv <filename1> <filename2>    # moves a file
 cp <filename1> <filename2>    # copies a file
 rm <filename>                 # removes a file
