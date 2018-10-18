@@ -1,27 +1,29 @@
 # 1. Bash Basics.
 
-### displays all environment variables
+### Displays all environment variables
 ```export```
 
-### displays the shell you're using
+### Displays the shell you're using
 ```echo $SHELL```
 
-### displays bash version 
+### Displays bash version 
 ```echo $BASH_VERSION```  
 
-### if you want to use bash (type exit to go back to your normal shell)
-```bash```      `          
+### To call bash shell (or exit another shell) 
+```bash```
 
-### # finds out where bash is on your system
-```whereis bash```        
+### Locates bash on your system
+```whereis bash```  
 
-clear               # clears content on window (hide displayed lines)
-
+### Clears terminal content (hides previous lines)
+```clear```             
 
 # 1.1. File Commands.
 
+### List command -> 1s
+```ls```  
 
-ls                            # lists your files
+                          # lists your files
 ls -l                         # lists your files in 'long format', which contains the exact size of the file, who owns the file and who has the right to look at it, and when it was last modified
 ls -a                         # lists all files, including hidden files
 ln -s <filename> <link>       # creates symbolic link to file
