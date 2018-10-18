@@ -1,4 +1,4 @@
-# 1. Bash Basics.
+# A. Bash Basics.
 
 ### Displays all environment variables
 ```export```
@@ -18,12 +18,14 @@
 ### Clears terminal content (hides previous lines)
 ```clear```             
 
-# 1.1. File Commands.
+# A1. Unix, Unix-like, Bash commands
 
-### List command -> 1s
+## List command -> 1s
+
+### lists your files
 ```ls```  
 
-                          # lists your files
+                          
 ls -l                         # lists your files in 'long format', which contains the exact size of the file, who owns the file and who has the right to look at it, and when it was last modified
 ls -a                         # lists all files, including hidden files
 ln -s <filename> <link>       # creates symbolic link to file
