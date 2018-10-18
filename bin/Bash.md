@@ -1,8 +1,12 @@
 # 1. Bash Basics.
 
 ###displays all environment variables
+Some basic Git commands are:
+```
+export  # displays all environment variables
+```
 '''
-export
+
 '''              
 
 echo $SHELL         # displays the shell you're using
