@@ -1,7 +1,7 @@
 # 1. Bash Basics.
 
-
-export              # displays all environment variables
+# displays all environment variables
+'''export'''              
 
 echo $SHELL         # displays the shell you're using
 echo $BASH_VERSION  # displays bash version
