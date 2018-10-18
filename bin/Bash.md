@@ -1,15 +1,19 @@
 # 1. Bash Basics.
 
-## displays all environment variables
+### displays all environment variables
 ```export```
 
-## displays the shell you're using
+### displays the shell you're using
 ```echo $SHELL```
 
-echo $BASH_VERSION  # displays bash version
+### displays bash version 
+```echo $BASH_VERSION```  
 
-bash                # if you want to use bash (type exit to go back to your normal shell)
-whereis bash        # finds out where bash is on your system
+### if you want to use bash (type exit to go back to your normal shell)
+```bash```      `          
+
+### # finds out where bash is on your system
+```whereis bash```        
 
 clear               # clears content on window (hide displayed lines)
 
