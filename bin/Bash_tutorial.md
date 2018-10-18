@@ -54,6 +54,9 @@
 ### Views file from the beginning - allows scrolling down a file
 ```more <filename>```
 
+### Views file from the end - allows scrolling up a file
+```less <filename>```
+
 ### Views file from the beginning - first 10 lines
 ```head <filename>```
 
@@ -72,13 +75,35 @@
 ### Views file from the beginning - last 1000 lines
 ```tail -1000 <filename>```
 
-### View, credit and edit a line (main text editors)
+### View, create and edit a line (main text editors)
 ```vim <filename>```
 ```nano <filename>```
 ```gedit <filename>```
 ```emacs <filename>```             
   
+## A1.5 move (rename) command -> mv
 
+### move (rename) files
+```mv```
+
+### move file
+```mv <filename>  directory/```
+
+### rename file
+```mv <filename> <newfilename>```
+
+## A1.5 concatenate command files and print on the standard output command -> mv
+
+### cat (rename) files
+```mv```
+
+### move file
+```mv <filename>  directory/```
+
+### rename file
+```mv <filename> <newfilename>```
+
+move (rename) files
 cat > <filename>              # places standard input into file
 mv <filename1> <filename2>    # moves a file
 cp <filename1> <filename2>    # copies a file
