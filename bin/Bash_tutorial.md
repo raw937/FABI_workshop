@@ -23,10 +23,14 @@
 ## List command -> 1s
 
 ### lists your files
-```ls```  
+```ls```
+
+### lists your files (long format)
+```ls -l```
+Gives file sizes, permissions, owner, last modification
 
                           
-ls -l                         # lists your files in 'long format', which contains the exact size of the file, who owns the file and who has the right to look at it, and when it was last modified
+                         # lists your files in 'long format', which contains the exact size of the file, who owns the file and who has the right to look at it, and when it was last modified
 ls -a                         # lists all files, including hidden files
 ln -s <filename> <link>       # creates symbolic link to file
 touch <filename>              # creates or updates your file
