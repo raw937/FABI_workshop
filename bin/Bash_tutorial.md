@@ -20,20 +20,25 @@
 
 # A1. Unix, Unix-like, Bash commands
 
-## List command -> 1s
+## A1.1 List command -> 1s
 
-### lists your files
+### List directory contents
 ```ls```
 
-### lists your files (long format)
+### Lists your files (long format, gives file sizes, permissions, owner, last modification)
 ```ls -l```
 
-#### Gives file sizes, permissions, owner, last modification
+### Lists all files, including hidden files                        
+```ls -a```   
 
-                          
-                         # lists your files in 'long format', which contains the exact size of the file, who owns the file and who has the right to look at it, and when it was last modified
-ls -a                         # lists all files, including hidden files
-ln -s <filename> <link>       # creates symbolic link to file
+### Best ls command 
+```ls -thor``` 
+#### -t sort by modification time, newest first                      
+#### -h human-readable
+####
+
+### Creates symbolic link to file                       
+```ln -s <filename> <link>```       
 touch <filename>              # creates or updates your file
 cat > <filename>              # places standard input into file
 more <filename>               # shows the first part of a file (move with space and type q to quit)
