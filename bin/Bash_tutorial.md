@@ -33,9 +33,10 @@
 
 ### Best ls command 
 ```ls -thor``` 
-#### -t sort by modification time, newest first                      
-#### -h human-readable
-####
+
+- -t sort by modification time, newest first                      
+###### -h human-readable
+######
 
 ### Creates symbolic link to file                       
 ```ln -s <filename> <link>```       
