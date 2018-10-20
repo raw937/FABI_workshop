@@ -31,6 +31,12 @@
 ### Lists all files, including hidden files                        
 ```ls -a```   
 
+### List all files and folders (adds \ to separate folders)
+```ls -F```
+
+### Recursively list Sub-Directories                       
+```ls -R```   
+
 ### Best ls command 
 ```ls -thor``` 
 
@@ -92,20 +98,22 @@
 ### rename file
 ```mv <filename> <newfilename>```
 
-## A1.5 concatenate command files and print on the standard output command -> mv
+## A1.6 concatenate command files and print on the standard output command -> cat
 
-### cat (rename) files
-```mv```
+### concatenate command files and print
+```cat```
 
-### move file
-```mv <filename>  directory/```
+### print file
+```cat <filename>```
+
+### view multiple files at once
+```cat <filename> <filename1>```
+
 
 ### rename file
 ```mv <filename> <newfilename>```
 
-move (rename) files
-cat > <filename>              # places standard input into file
-mv <filename1> <filename2>    # moves a file
+
 cp <filename1> <filename2>    # copies a file
 rm <filename>                 # removes a file
 diff <filename1> <filename2>  # compares files, and shows where they differ
