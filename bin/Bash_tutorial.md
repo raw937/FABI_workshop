@@ -89,30 +89,44 @@
   
 ## A1.5 move (rename) command -> mv
 
-### move (rename) files
+### Move (rename) files
 ```mv```
 
-### move file
+### Move file
 ```mv <filename>  directory/```
 
-### rename file
+### Rename file
 ```mv <filename> <newfilename>```
 
-## A1.6 concatenate command files and print on the standard output command -> cat
+### Rename directory
+```mv directory/```
 
-### concatenate command files and print
-```cat```
+## A1.6 Concatenate command for print standard output -> cat
 
-### print file
+### Print file
 ```cat <filename>```
 
-### view multiple files at once
+### Ciew multiple files at once
 ```cat <filename> <filename1>```
 
+### Create a file
+```cat > <filename>```
 
-### rename file
-```mv <filename> <newfilename>```
+### View for large files
+- ```cat <filename> | more```
+- ```cat <filename> | less```
 
+### Combine files
+```cat <filename> <filename1> ><newfile>```
+
+### Print with number of lines
+```cat -n <filename>```
+
+### Prints with end of the line ('$' is the end)
+```cat -e <filename>```
+
+### Prints with tab visable within the line ('^I' showing the tab)
+```cat -T <filename>```
 
 cp <filename1> <filename2>    # copies a file
 rm <filename>                 # removes a file
