@@ -82,10 +82,10 @@
 ```tail -1000 <filename>```
 
 ### View, create and edit a line (main text editors)
-```vim <filename>```
-```nano <filename>```
-```gedit <filename>```
-```emacs <filename>```             
+- ```vim <filename>```
+- ```nano <filename>```
+- ```gedit <filename>```
+- ```emacs <filename>```             
   
 ## A1.5 move (rename) command -> mv
 
