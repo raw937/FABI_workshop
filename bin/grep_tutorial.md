@@ -1,5 +1,5 @@
 ## Global regular expression print -> grep
-### Power hand of the gods
+### Powerful hand of the gods
 
 ### Basic syntex 
 ```grep [OPTIONS] PATTERN [FILE...]```
