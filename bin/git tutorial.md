@@ -1,8 +1,13 @@
 # Git tutorial for version control and reproductable research
 
 ## Install for linux
-- ```sudo apt-get install git```
-- ```sudo yum install git```
+
+### Ubuntu 16.04/18.04
+```sudo apt update```
+```sudo apt install git```
+
+## Check version of git
+```git --version```
 
 ## Make a new repo
 ```git init```
