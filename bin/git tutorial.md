@@ -3,8 +3,8 @@
 ## Install for linux
 
 ### Ubuntu 16.04/18.04
-```sudo apt update```
-```sudo apt install git```
+- ```sudo apt update```
+- ```sudo apt install git```
 
 ## Check version of git
 ```git --version```
