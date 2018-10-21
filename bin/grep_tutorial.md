@@ -13,7 +13,10 @@
 ```grep <pattern> <filenames>```    
   
 ### Search recursively for pattern in directory
-```grep -r <pattern> <dir>```       
+```grep -r <pattern> <dir>``` 
+
+### Gives line number for the string match (great for debugging)
+grep –n “stringpatten” script.sh
 
 #### Examples for sequence files 
 - ```grep ">" <sequencefile.fasta> | more```
