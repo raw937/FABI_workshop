@@ -34,3 +34,5 @@ grep –n “stringpatten” script.sh
 #### Word count specific character
 ```grep -o ">" <infile.txt> | wc -w```
 
+### Find hello in many files
+```grep hello "find . -name "*.txt" -print"```
