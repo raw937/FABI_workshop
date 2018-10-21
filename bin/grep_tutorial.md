@@ -9,6 +9,12 @@
 - -v: print out the lines that don't match the pattern
 - -n printout the line number before printing the matching line
 
+### Looks for the string in the files
+```grep <pattern> <filenames>```    
+  
+### Search recursively for pattern in directory
+```grep -r <pattern> <dir>```       
+
 #### Examples for sequence files 
 - ```grep ">" <sequencefile.fasta> | more```
 - ```grep -i ">" <sequencefile.fasta> | more```
