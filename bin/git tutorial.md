@@ -78,7 +78,7 @@
 ```git log --author=bob```
 
 ### Very compressed log, one line per commit
-git log --pretty=oneline
+```git log --pretty=oneline```
 
 ### See only which files have changed:
 ```git log --name-status```
@@ -94,3 +94,18 @@ git log --pretty=oneline
 ### Drop all commits, fetch the latest history then point to master branch
 - ```git fetch origin```
 - ```git reset --hard origin/master```
+
+## Useful hints
+
+### Built-in git GUI 
+```gitk```
+
+### Colorful git output
+```git config color.ui true```
+
+### Show log per commit (one line)
+```git config format.pretty oneline```
+
+### Use interactive adding
+```git add -i```
+
