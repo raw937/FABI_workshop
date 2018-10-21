@@ -56,7 +56,41 @@
 ### Update branch
 ```git pull```
 
+### Preview Merge
+```git diff <source_branch> <target_branch>```
+
 ### Merge branch
 ```git merge <branch>```
+- if merging has conflicts 
+- then you need to manually edit them out
+- then run command 
+```git add <filename>```
 
+## Creating tags for software releases (v 1.0.0 here)
+```git tag 1.0.0 software```
 
+## Logging and version control
+
+### Basic log
+```git log```
+
+### Commits of a certain author
+```git log --author=bob```
+
+### Very compressed log, one line per commit
+git log --pretty=oneline
+
+### See only which files have changed:
+```git log --name-status```
+
+### Help for git logging
+```git log --help```
+
+## Replace local changes 
+
+### Basic local changes command
+```git checkout -- <filename>```
+
+### Drop all commits, fetch the latest history then point to master branch
+- ```git fetch origin```
+- ```git reset --hard origin/master```
