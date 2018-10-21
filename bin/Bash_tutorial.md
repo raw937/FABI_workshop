@@ -159,10 +159,6 @@
 ### Prints with tab visable within the line ('^I' showing the tab)
 ```cat -T <filename>```
 
-### Prints a zipped file without opening it
-- ```gzcat <filename.gz> | more```
-- ```gzcat <filename.gz> | less```
-
 ## A1.9 Copying files and directories -> cp, scp, rsync
 
 ### Copies a file
@@ -192,17 +188,17 @@
 
 ### Secure copy file with debug
 ```scp -v <filename1> username@destination_host:destination_folder```
-- “-v” parameter to print debug information
+- -v: parameter to print debug information
  
 ### Secure copy file with estimated time/connection speed
 ```scp -p <filename1> username@destination_host:destination_folder```
-- “-p” with estimated time and the connection speed
+- -p: with estimated time and the connection speed
 
 ### Best scp with debug, estimated time/connection speed and compression 
 ```scp -Cpv <filename1> username@destination_host:destination_folder```
-- “-C” with compression 
-- “-p” with estimated time and the connection speed
-- “-v” parameter to print debug information
+- -C: with compression 
+- -p: with estimated time and the connection speed
+- -v: parameter to print debug information
 
 ### Basic syntax of rsync command
 ```rsync options source destination```
@@ -234,11 +230,46 @@
 ```gzip <filename> ``` 
 - results in <filename>.gz
   
-### Uncompresses files compressed by gzip
+### Uncompresses files compressed by gunzip (.gz)
 ```gunzip <filename>.gz``` 
 - results in <filename>
 
-## A1.XXX alias command to make command short cuts -> alias
+### Compresses files compressed by tar (tar.gz)
+```tar -cvzf <foldername.tar.gz>```
+- -z: gzip compression
+- -c: Creates a new .tar archive file.
+- -v: Verbosely show the .tar file progress.
+- -f:  File name type of the archive file.
+
+### List contents of tar.gz 
+```tar -tvf <foldername.tar.gz>```
+
+### Prints a zipped file without opening it
+- ```gzcat <filename.gz> | more```
+- ```gzcat <filename.gz> | less```
+
+### Uncompresses files compressed by tar (tar.gz) 
+```tar -zxvf <foldername.tar.gz>```
+- -z: many files
+- -x: extract gzip 
+- -v: Verbosely show the .tar file progress.
+- -f:  File name type of the archive file.
+
+### Compresses files compressed by tar (tar.bz2, more compression)
+```tar -cvjf <foldername.tar.gz>```
+- -j: bz2 compression
+- -c: Creates a new .tar archive file.
+- -v: Verbosely show the .tar file progress.
+- -f:  File name type of the archive file.
+
+### Uncompresses files compressed by tar (tar.bz2) 
+```tar -xjvf <foldername.tar.bz2>```
+- -j: bz2 file
+- -x: extract gzip 
+- -v: Verbosely show the .tar file progress.
+- -f:  File name type of the archive file.
+   
+## A1.13 alias command to make command short cuts -> alias
 
 ### Basic syntax
 ```alias command='command opition'```
@@ -247,7 +278,7 @@
 - ```alias squeue=squeue -u username```
 - ```alias ls="ls -l"```
 - ```alias cp='cp -i'```
--```alias l.='ls -d .* --color=auto'```
+- ```alias l.='ls -d .* --color=auto'```
 - ```alias ll='ls -l --color=auto'```
 - ```alias ls='ls --color=auto'```
 - ```alias mv='mv -i'```
@@ -256,13 +287,44 @@
 ### Remove alias command
 ```unalias ls```
 
+## A1.14 compares files, and shows where they differ
 
+### Basic syntax 
+```diff <filename1> <filename2>```  
 
-diff <filename1> <filename2>  # compares files, and shows where they differ
-wc <filename>                 # tells you how many lines, words and characters there are in a file
-chmod -options <filename>     # lets you change the read, write, and execute permissions on your files
+## A1.15 count things with -> wc
 
+### Basic syntax 
+```wc <filename>```
 
-grep <pattern> <filenames>    # looks for the string in the files
-grep -r <pattern> <dir>       # search recursively for pattern in directory
+### Options wc
+- -l : Prints the number of lines in a file.
+- -w : prints the number of words in a file.
+- -c : Displays the count of bytes in a file.
+- -m : prints the count of characters from a file.
+- -L : prints only the length of the longest line in a file.
 
+### Examples of wc 
+- ```wc -l <filename1>``` # of lines
+- ```wc -w <filename1>``` # of words
+- ```wc -c <filename1>``` # of bytes
+- ```wc -m <filename1>``` # of characters
+- ```wc -L <filename1>``` # display longest line
+
+## A1.16 use the manual -> man
+
+### Basic syntax
+```man command```
+
+### Examples of man
+- ```man wc``` 
+- ```man cd``` 
+- ```man grep``` 
+
+## A1.17 read, write, and execute permissions on your files
+
+### Basic syntax 
+```chmod -options <filename>```
+
+### Command chmod to make a bash script active
+```chmod a+x script.sh```
