@@ -19,3 +19,44 @@
 
 ## Create a working copy of a local repository by running the command (server)
 ```git clone username@host:/path/to/repository```
+
+## Add and Commit -> new file
+
+### Add
+- ```git add <filename>```
+- ```git add *```
+
+### Commit
+```git commit -m "Commit message"```
+
+## Pushing changes
+
+### Standard
+```git push origin master```
+
+### Server
+```git remote add origin <server>```
+
+## Branching 
+
+### Create new branch (named bin)
+```git checkout -b bin```
+
+### Switch back to the master branch
+```git checkout master```
+
+### Delete a branch
+```git branch -d bin```
+
+### Push branch to new repo
+```git push origin <branch>```
+
+## Update and merge
+
+### Update branch
+```git pull```
+
+### Merge branch
+```git merge <branch>```
+
+
