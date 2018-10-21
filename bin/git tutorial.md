@@ -2,7 +2,7 @@
 
 ## Install for linux
 - ```sudo apt-get install git```
-- ```sudo yum install git``
+- ```sudo yum install git```
 
 ## Make a new repo
 ```git init```
