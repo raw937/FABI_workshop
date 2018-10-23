@@ -1,0 +1,64 @@
+#### Workflow
+
+## Starting QIIME in the Shell
+qiime
+
+## Converting from fastq to fasta and quality
+convert_fastaqual_fastq.py -f assembly1.fastq -c fastq_to_fastaqual
+
+## Quality control and de-multiplexing 
+split_libraries.py -m mapping/mapping_file.txt -f data/assembly1.fna -q data/assembly1.qual -t -s 30 -b 8 -o split_library/ -e 0 -z truncate_only
+
+## Chimera detection
+identify_chimeric_seqs.py -i split_library/seqs.fna -m usearch61 -o chimaera_detection/ --suppress_usearch61_ref
+filter_fasta.py -f split_library/seqs.fna -o split_library/seqs_nc.fna -s chimaera_detection/non_chimeras.txt
+
+## OTU picking
+pick_otus.py -i split_library/seqs_nc.fna -s 0.95 -z
+
+## SHELL
+mkdir rep_set
+mkdir otu_table
+mkdir alpha_diversity
+mkdir beta_diversity
+mkdir beta_diversity/single_rarefaction
+mkdir beta_diversity/beta_diversity
+mkdir beta_diversity/principal_coordinates
+mkdir beta_diversity/emperor
+
+## Assigning taxonomy
+pick_rep_set.py -i uclust_picked_otus/seqs_nc_otus.txt -f split_library/seqs_nc.fna -o rep_set/seqs_nc_rep_set.fna
+assign_taxonomy.py -i rep_set/seqs_nc_rep_set.fna -t /PATH/sh_qiime_release_s_28/sh_taxonomy_qiime_ver7_99_s_28.06.2017.txt -r /PATH/sh_qiime_release_s_28/sh_refs_qiime_ver7_99_s_28.06.2017.fasta -m blast -e 1e-30
+
+
+## RDP assignment grep replacement
+Replace:  	;\+;(\w*;)\d*%;(\w*;)\d*%;(\w*;)\d*%;(\w*;)\d*%;(\w*;)\d*%;(\w*;)\d*%;(\w*_\w*)\|(.*);(\d*)% und
+			;\-;(\w*;)\d*%;(\w*;)\d*%;(\w*;)\d*%;(\w*;)\d*%;(\w*;)\d*%;(\w*;)\d*%;(\w*_\w*)\|(.*);(\d*)%
+by: 		\tk__\1p__\2c__\3o__\4f__\5g__\6s__\7\t\9\t\8
+
+## Make an OTU table and filter it for singleton OTUs and OTUs with no blast hit
+make_otu_table.py -i uclust_picked_otus/seqs_nc_otus.txt -o otu_table/otu95.biom -t blast_assigned_taxonomy/seqs_nc_rep_set_tax_assignments.txt -m mapping_file/mapping_file.txt
+filter_otus_from_otu_table.py -i otu_table/otu95.biom -o otu_table/otu95_min2.biom -n 2
+filter_taxa_from_otu_table.py -i otu_table/otu95.biom -o otu_table/otu95_noblast.biom -n No\ blast\ hit
+
+## Summarize the OTU table
+biom summarize-table -i otu_table/otu95.biom
+
+## Export OTU table
+biom convert -i otu_table/otu95.biom -o otu_table/otu95.txt --to-tsv --header-key taxonomy 
+
+##Taxonomy plot
+summarize_taxa.py -i otu_table/otu95_min2.biom -L 2,3,4,5,6,7,8 -o taxonomy/summarized_taxa
+plot_taxa_summary.py -i taxonomy/summarized_taxa/otu95_min2_L6.txt -o taxonomy/taxa_plots/L6/ -c bar
+
+##Alpha diversity
+multiple_rarefactions.py -i otu_table/otu95_noblast_min2.biom -o alpha_diversity/multiple_rarefactions/ -m 100 -x 2000 -s 100
+alpha_diversity.py -i alpha_diversity/multiple_rarefactions/ -o alpha_diversity/alpha_diversity/ -m observed_otus
+collate_alpha.py -i alpha_diversity/alpha_diversity/ -o alpha_diversity/collated_alpha/
+make_rarefaction_plots.py -i alpha_diversity/collated_alpha/ -m mapping_file/mapping_file.txt -o alpha_diversity/alpha_plot/
+
+##Beta diversity
+single_rarefaction.py -i otu_table/otu95_noblast_min10.biom -o beta_diversity/single_rarefaction/single_rarefaction.txt -d 10000
+beta_diversity.py -i beta_diversity/single_rarefaction/single_rarefaction.txt -o beta_diversity/beta_diversity/ -m bray_curtis
+principal_coordinates.py -i beta_diversity/beta_diversity/bray_curtis_single_rarefaction.txt -o beta_diversity/principal_coordinates/bray_curtis.txt
+make_emperor.py -i beta_diversity/principal_coordinates/bray_curtis.txt -m mapping_file/mapping_file.txt -o beta_diversity/emperor/bray_curtis/
