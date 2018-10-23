@@ -1,0 +1,52 @@
+## Sequence Data Import of Demultiplexed Data
+qiime tools import  \
+ --type 'SampleData[SequencesWithQuality]'  \
+ --input-path data-manifest \
+ --output-path single-end-demux.qza \
+ --input-format SingleEndFastqManifestPhred33
+ 
+## ASVs  
+qiime dada2 denoise-single \
+ --i-demultiplexed-seqs single-end-demux.qza \
+ --p-trim-left 30 \
+ --p-trunc-len 200 \
+ --o-representative-sequences rep-seqs-dada2.qza \
+ --o-table table-dada2.qza \
+ --o-denoising-stats stats-dada2.qza
+
+## Feature Table with Frequencies of ASVs
+qiime metadata tabulate \
+ --m-input-file stats-dada2.qza \
+ --o-visualization stats-dada2.qzv
+
+mv table-dada2.qza table.qza
+
+## Adding metadata to feature table visualization 
+qiime feature-table summarize \
+ --i-table table.qza \
+ --o-visualization table.qzv \
+ --m-sample-metadata-file mapping_file.txt
+
+## Taxonomic Assignment
+qiime feature-classifier classify-consensus-vsearch \
+ --i-query rep-seqs-dada2.qza \ 
+ --i-reference-reads /Users/mkemler/Documents/databases/unite/sh_qiime_release_s_28/sh_refs_qiime_ver7_99.qza \
+ --i-reference-taxonomy /Users/mkemler/Documents/databases/unite/sh_qiime_release_s_28/sh_taxonomy_qiime_ver7_99.qza \
+ --output-dir vsearch_taxonomy/
+
+qiime metadata tabulate \
+  --m-input-file classification.qza \
+  --o-visualization classification.qzv
+  
+qiime taxa barplot \
+  --i-table table.qza \
+  --i-taxonomy vsearch_taxonomy/classification.qza \
+  --m-metadata-file mapping_file.txt \
+  --o-visualization vsearch_taxonomy/taxa-bar-plots.qzv
+  
+## Import of biom file
+qiime tools import \
+  --input-path otu95.biom \
+  --type 'FeatureTable[Frequency]' \
+  --input-format BIOMV210Format \
+  --output-path feature-table-1.qza
