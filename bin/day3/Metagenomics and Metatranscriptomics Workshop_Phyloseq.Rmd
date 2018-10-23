@@ -1,0 +1,103 @@
+---
+title: "Metagenomics and Metatranscriptomics Workshop_Phyloseq"
+author: "María Vivas"
+date: "22-26 October 2018"
+output: html_document
+---
+
+```{r}
+# SELECT THE WORKING DIRECTORY
+setwd("C:/Users/Maria/Desktop/Metagenomics_transcriptomics Workshop(22-26 Oct 2018)/data")
+```
+
+```{r}
+# LOAD THE PACKAGES:
+Packages <- c("phyloseq","ggplot2")
+
+lapply(Packages, library, character.only = TRUE) #character.only	a logical indicating whether package can be assumed to be character strings
+
+```
+
+```{r}
+# IMPORTING DATA INTO R
+
+#Abundance data
+abundance <- read.csv("data_abundance.csv",row.names=1,check.names=FALSE) 
+
+#metafile data 
+metadata <- read.csv("data_metadata.csv",row.names=1,check.names=FALSE)
+
+#taxonomy daa
+taxonomy <- read.csv("data_taxonomy.csv",row.names=1,check.names=FALSE) 
+
+#convert data to phyloseq format
+OTU = otu_table(as.matrix(abundance), taxa_are_rows = TRUE)
+TAX = tax_table(as.matrix(taxonomy))
+SAM = sample_data(metadata)
+
+physeq = phyloseq(OTU, TAX, SAM)
+physeq
+```
+
+```{r}
+#plot abundance
+plot_abundance <- plot_bar(physeq, fill = "order")
+plot_abundance
+
+#Plot Species diversity indices
+plot_diversity1 <- plot_richness(physeq, x = "site", color = "genotype")
+plot_diversity1
+
+plot_diversity2 <- plot_diversity1+theme_bw() #theme_bw() - white background
+plot_diversity2
+```
+
+```{r}
+# Random phylogenetic tree
+
+library("ape")
+
+random_tree = rtree(ntaxa(physeq), rooted=TRUE, tip.label=taxa_names(physeq))
+
+plot(random_tree)
+
+#Now take the subset of the data
+physeq_subset<-subset_taxa(subset_samples(physeq,site=="A"),genus=="Fusarium")
+
+random_tree_subset = rtree(ntaxa(physeq_subset), rooted=TRUE,
+                           tip.label=taxa_names(physeq_subset))
+
+plot(random_tree_subset)
+
+#Combine these altogether and build a tree plot with the combine data 
+
+physeq<-merge_phyloseq(physeq, random_tree)
+physeq
+
+tree<-plot_tree(physeq, color="site", label.tips="taxa_names", 
+                ladderize="left", plot.margin=0.3)
+plot(tree)
+
+#Subset of the data
+physeq_subset<-merge_phyloseq(physeq_subset, random_tree_subset)
+physeq_subset
+
+tree_subset<-plot_tree(physeq_subset, color="site", label.tips="taxa_names",
+                       ladderize="left", plot.margin=0.3)
+
+plot(tree_subset)
+```
+
+```{r} 
+#PCoA - unifrac distances 
+#Unifrac distances differs from dissimilarity measures such as Bray-Curtis dissimilarity in that it incorporates information on the relative relatedness of community members by incorporating phylogenetic distances between observed organisms.
+# weighted (abundance) or unweighted (presence/absence) 
+
+ord <- ordinate(physeq, method="PCoA", distance="unifrac", weighted=TRUE)
+
+pcoa_unifrac <- plot_ordination(physeq, ord, color="age", shape="site", title="Phyloseq's Weighted Unifrac")
+
+pcoa_unifrac <- pcoa_unifrac + theme_bw()
+pcoa_unifrac
+
+```

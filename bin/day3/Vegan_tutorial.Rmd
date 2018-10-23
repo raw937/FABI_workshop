@@ -1,0 +1,564 @@
+---
+title: "Metagenomics and Metatranscriptomics Workshop_Phyloseq"
+author: "Maria Vivas and Richard Allen White III"
+date: "22-26 October 2018"
+output: html_notebook
+---
+
+```{r}
+# SELECT THE WORKING DIRECTORY
+setwd('/home/user/data/')
+```
+
+```{r}
+# LOAD THE PACKAGES:
+# library() only load one package at a time, but...
+
+Packages <- c("vegan", "dplyr", "MASS","ggplot2")
+
+library(agricolae)  # Tukey test
+#library(tidyverse)  # data manipulation
+library(cluster)    # clustering algorithms
+library(factoextra) # clustering visualization
+
+#lapply(Packages, library, character.only =TRUE)#character.only	a logical indicating whether package can be assumed to be character strings
+```
+
+```{r}
+# IMPORTING DATA INTO R
+
+#Abundance data
+abundance <- read.csv("data_abundance.csv",row.names=1,check.names=FALSE) 
+
+#transpose the data to have sample names on rows
+abundance<-t(abundance) 
+
+#to change the abundance table to presence/absence
+#abundance[abundance>0] <-1 
+
+#metafile data 
+metadata <- read.csv("data_metadata.csv",row.names=1,check.names=FALSE)
+```
+
+```{r}
+#SPECIES ACUMULATION CURVE
+
+sp_ac_curve <- specaccum(abundance, method="collector") #Method "collector" adds sites in the order they happen to be in the data
+
+sp_ac_curve_plot <- plot(sp_ac_curve, xlab = "Number of Accumulated Samples", ylab = "Number of Species")
+sp_ac_curve_plot
+```
+
+```{r}
+#SPECIES ACUMULATION CURVE per group
+data <- cbind(metadata,abundance) #combine by columns, respectively. 
+
+site_A <- data[ which(data$site=='A'),]
+abundance_A <- site_A[,c(5:1973)] #ncol(data)
+sp_ac_curve_A <- specaccum(abundance_A, method="collector")
+
+site_B <- data[ which(data$site=='B'),]
+abundance_B <- site_B[,c(5:1973)]
+sp_ac_curve_B <- specaccum(abundance_B, method="collector")
+
+sp_ac_curve_plot_AB <- plot(sp_ac_curve_A, xlab = "Number of Accumulated Samples", ylab = "Number of Species")
+
+## add another variable
+lines(sp_ac_curve_B, lty = 2, col = "red")  
+
+legend(12, 1000, legend=c("Site A", "Site B"), 
+       lty = (1:2) ,col=c("black", "red"))
+sp_ac_curve_plot_AB
+```
+
+```{r}
+#RAREFACTION CURVE
+
+raremin <- min(rowSums(abundance))#rarefaction uses the smallest number of observations per sample to extrapolate the expected number if all other samples only had that number of observations
+raremin
+
+rare_richness <- rarefy(abundance, raremin) #gives an "expected"rarefied" number of species (not obs) if only 48519 individuals (raremin) were present
+rare_richness 
+
+rarecurve(abundance, step= 10000, sample = raremin, col = "blue", cex = 0.6, ylab = "Number of Species", xlab = "Number of Individuals")# If sample is specified, a vertical line is drawn at sample with horizontal lines for the rarefied species richnesses.
+```
+
+```{r}
+#RANK ABUNDANCE CURVE
+
+total.count <- apply(abundance,2,sum) #Sum counts across species (columns)
+
+sort.count <- sort(total.count, decreasing=TRUE) #rank species
+
+plot(sort.count, type="h",cex.axis=0.7, las=1, 
+     ylab="Number of individuals", xlab="Species rank")
+```
+
+```{r}
+#RANK ABUNDANCE CURVE per group
+
+site_A <- data[ which(data$site=='A'),]
+abundance_A <- site_A[,c(5:1973)]
+total.count_A <- apply(abundance_A,2,sum) 
+sort.count_A <- sort(total.count_A, decreasing=TRUE)
+
+site_B <- data[ which(data$site=='B'),]
+abundance_B <- site_B[,c(5:1973)]
+total.count_B <- apply(abundance_B,2,sum) 
+sort.count_B <- sort(total.count_B, decreasing=TRUE)
+
+plot(sort.count_A, type="l",cex.axis=0.7, las=1, 
+     ylab="Number of individuals", xlab="Species rank")
+
+## add another variable
+lines(sort.count_B, type = "l", lty = 2, col = "red") 
+
+legend(1200, 200000, legend=c("Site A", "Site B"), 
+       lty = (1:2) ,col=c("black", "red"))
+```
+
+```{r}
+#RICHNESS
+
+#Not rarefied
+sample_richness <- rowSums(abundance)#sum the individuals per row(per sample)
+m_richness <- lm(sample_richness ~ site*genotype, data)
+anova(m_richness)
+```
+
+```{r}
+#Rarefied Richness
+rare_richness <- rarefy(abundance, raremin)
+m_rare_richness <- lm(rare_richness ~ site*genotype, data)
+anova(m_rare_richness)
+```
+
+```{r}
+#RICHNESS
+
+#Not rarefied
+
+#model distribution: normality-homocedasticity
+par(mfrow=c(1,2))
+qqnorm(m_richness$residuals)
+qqline(m_richness$residuals,lty=2) #normality
+plot(m_richness$fitted.values,m_richness$residuals) #homocedasticity
+shapiro.test(m_richness$residuals)##model is normally distributed W>0.05 P>0.05
+```
+
+```{r}
+#Rarefied Richness
+
+#model distribution: normality-homocedasticity
+par(mfrow=c(1,2))
+qqnorm(m_rare_richness$residuals)
+qqline(m_rare_richness$residuals,lty=2) #normality
+plot(m_rare_richness$fitted.values,m_rare_richness$residuals) #homocedasticity
+shapiro.test(m_rare_richness$residuals)##model is normally distributed W>0.05 P>0.05
+```
+
+```{r}
+#SPECIES DIVERSITY INDEX
+#No rarefraction
+#Shannon
+sample_shannon <- diversity(abundance) # note that Shannon's is default
+sample_shannon # higher Shannon = more diverse 
+
+m_shannon <- lm(sample_shannon ~ site*genotype, data)
+anova(m_shannon)
+```
+
+```{r}
+#SPECIES DIVERSITY INDEX
+#No rarefraction
+#Shannon
+
+#model distribution: normality-homocedasticity
+par(mfrow=c(1,2))
+qqnorm(m_shannon$residuals)
+qqline(m_shannon$residuals,lty=2) #normality
+plot(m_shannon$fitted.values,m_shannon$residuals) #homocedasticity
+shapiro.test(m_shannon$residuals)##model is normally distributed W>0.05 P>0.05
+```
+
+```{r}
+#A Tukey's Honest Significant Difference (HSD) test to do pairwise comparisons of the means.
+site_genotype <- with(data, interaction(site, genotype))
+m_shannon <- lm(sample_shannon ~ site_genotype, data)
+m_shannon <- HSD.test(m_shannon, "site_genotype", group = TRUE)
+m_shannon
+```
+
+```{r}
+#SPECIES DIVERSITY INDEX
+#Simpson
+sample_simpson <- diversity(abundance, "simpson") 
+sample_simpson #higher = less diverse
+
+m_simpson <- lm(sample_simpson ~ site*genotype, data)
+anova(m_simpson)
+```
+
+```{r}
+#SPECIES DIVERSITY INDEX
+#Simpson
+
+#model distribution: normality-homocedasticity
+par(mfrow=c(1,2))
+qqnorm(m_simpson$residuals)
+qqline(m_simpson$residuals,lty=2) #normality
+plot(m_simpson$fitted.values,m_simpson$residuals) #homocedasticity
+shapiro.test(m_simpson$residuals)##model is normally distributed W>0.05 P>0.05
+```
+
+```{r}
+#Simpson_transform
+m_simpson_trans <- lm(log(sample_simpson) ~ site*genotype, data)
+anova(m_simpson_trans)
+```
+
+```{r}
+#Simpson_transform
+
+#model distribution: normality-homocedasticity
+par(mfrow=c(1,2))
+qqnorm(m_simpson_trans$residuals)
+qqline(m_simpson_trans$residuals,lty=2) #normality
+plot(m_simpson_trans$fitted.values,m_simpson_trans$residuals) #homocedasticity
+shapiro.test(m_simpson_trans$residuals)##model is normally distributed W>0.05 P>0.05
+```
+
+```{r}
+#SPECIES COMPOSITION - clustering analysis
+
+Abun_scale <- scale(abundance)
+
+#Agglomerative Hierarchical Clustering
+Abun_scale_d <- dist(Abun_scale, method = "euclidean")# Dissimilarity matrix
+hc_agglo <- hclust(Abun_scale_d, method = "complete" )# Hierarchical clustering 
+plot(hc_agglo,cex = 0.8, hang = -1, main = "Agglomerative Hierarchical Clustering")
+```
+
+```{r}
+#SPECIES COMPOSITION - clustering analysis
+
+#Divisive Hierarchical Clustering
+hc_divi <- diana(Abun_scale)# divisive hierarchical clustering
+pltree(hc_divi, cex = 0.8, hang = -1, main = "Divisive Hierarchical Clustering")#
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Principal Component Analysis PCA
+
+#PCA is not ideal for analysis of information on species abundances because of the limitations of the Euclidean distance for describing community differences. However, when the original species matrix is suitably transformed, then the output of a PCA can become more meaningful.
+
+#Abundance transform, we use the relative abundance to improve Euclidean distance
+total <- apply(abundance,1,sum) #Sum rows
+relative_abundance <- abundance/total # relative abundance
+
+#abundance.pca <- princomp(abundance_trans)#more rows than columns
+abundance.pca <- prcomp(relative_abundance)#more columns than rows
+summary(abundance.pca)
+
+
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Principal Component Analysis PCA
+#Terrible plot next is better
+#biplot(abundance.pca)
+```
+
+```{r}
+#The package factoextra is also used for the visualization of PCA
+fviz_pca_biplot(abundance.pca)
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Correspondence Analysis (CA)
+
+abundance_ca <- cca(abundance)
+summary(abundance_ca)
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Correspondence Analysis (CA)
+
+plot(abundance_ca, display = c("wa"))#"wa" display sites scores
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Nonmetric Mulltidimensional Scaling-NMDS
+
+#I suggest not use NMDS with few samples. PCoA works better. 
+
+#the statistic that reflects how well the configuration represents the distance is called "stress". A smaller stress means that a better NMDS ordination was calculated. Final stress values should be smaller than 10% and not larger that 30% to represent species abundance data accurately.
+
+abundance_nmds <- metaMDS(abundance, distance ="bray")
+abundance_nmds
+
+plot(abundance_nmds)
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Principal Coordinates Analysis (PCoA)
+abundance.d <- vegdist(abundance, method="bray")
+
+abundance_pcoa <- cmdscale(abundance.d)
+
+plot(abundance_pcoa)
+
+plot(abundance_pcoa, xlim=c(-0.5,0.5), ylim=c(-0.5,0.5),
+     xlab="Coordinate 1", ylab="Coordinate 2", type="n")
+text(abundance_pcoa, labels = row.names(abundance), cex=.5)
+
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Principal Coordinates Analysis (PCoA)
+
+#graphs PCoA
+data_pcoa <- as.data.frame(abundance_pcoa)
+
+#by site
+data_pcoa$site <- metadata$site
+plot(data_pcoa[data_pcoa$site=="A",]$V1,
+     data_pcoa[data_pcoa$site=="A",]$V2,
+     xlim=c(-0.5,0.5), ylim=c(-0.5,0.5), 
+     xlab="Dimension 1", ylab="Dimension 2", 
+     main="by site",
+     col="blue", pch=19)
+points(data_pcoa[data_pcoa$site=="B",]$V1,
+       data_pcoa[data_pcoa$site=="B",]$V2,
+       col="red", pch=19)
+legend("top", legend=c("A", "B"),
+       col=c("blue", "red"), pch=c(19,19))
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Principal Coordinates Analysis (PCoA)
+
+#graphs PCoA
+data_pcoa <- as.data.frame(abundance_pcoa)
+
+#by age
+data_pcoa$age <- metadata$age
+plot(data_pcoa[data_pcoa$age=="8months",]$V1,
+     data_pcoa[data_pcoa$age=="8months",]$V2, 
+     xlim=c(-0.5,0.5), ylim=c(-0.5,0.5),
+     xlab="Dimension 1", ylab="Dimension 2", 
+     main="by age",
+     col="blue",pch=19)
+points(data_pcoa[data_pcoa$age=="3months",]$V1,
+       data_pcoa[data_pcoa$age=="3months",]$V2,
+       col="red", pch=19)
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Principal Coordinates Analysis (PCoA)
+
+#graphs PCoA
+data_pcoa <- as.data.frame(abundance_pcoa)      
+
+#by genotype
+data_pcoa$genotype <- metadata$genotype
+plot(data_pcoa[data_pcoa$genotype=="G1",]$V1,
+     data_pcoa[data_pcoa$genotype=="G1",]$V2,
+     xlim=c(-0.5,0.5), ylim=c(-0.5,0.5),
+     xlab="Dimension 1", ylab="Dimension 2", 
+     main="by genotype",
+     col="blue", pch=19)
+points(data_pcoa[data_pcoa$genotype=="G2",]$V1,
+       data_pcoa[data_pcoa$genotype=="G2",]$V2,
+       col="red", pch=19)
+points(data_pcoa[data_pcoa$genotype=="G3",]$V1,
+       data_pcoa[data_pcoa$genotype=="G3",]$V2,
+       col="green", pch=19)
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Principal Coordinates Analysis (PCoA)
+
+#graphs PCoA
+data_pcoa <- as.data.frame(abundance_pcoa)      
+
+#by site x genotype x age
+inter_all <- with(metadata, interaction(site, genotype, age))
+metadata <- cbind(metadata,inter_all)
+data_pcoa$inter_all <- metadata$inter_all
+
+plot(data_pcoa[data_pcoa$inter_all =="A.G1.8months",]$V1,
+     data_pcoa[data_pcoa$inter_all =="A.G1.8months",]$V2,
+     xlim=c(-0.5,0.5), ylim=c(-0.25,0.35), 
+     xlab="Dimension 1", ylab="Dimension 2",
+     main="by site x genotype x age",
+     col="blue", pch=15, las=1)
+points(data_pcoa[data_pcoa$inter_all=="A.G1.3months",]$V1,
+       data_pcoa[data_pcoa$inter_all=="A.G1.3months",]$V2,
+       col="blue", pch=0)
+points(data_pcoa[data_pcoa$inter_all=="A.G2.8months",]$V1,
+       data_pcoa[data_pcoa$inter_all=="A.G2.8months",]$V2,
+       col="blue", pch=16)
+points(data_pcoa[data_pcoa$inter_all=="A.G2.3months",]$V1,
+       data_pcoa[data_pcoa$inter_all=="A.G2.3months",]$V2,
+       col="blue", pch=1)
+points(data_pcoa[data_pcoa$inter_all=="A.G3.8months",]$V1,
+       data_pcoa[data_pcoa$inter_all=="A.G3.8months",]$V2,
+       col="blue", pch=17)
+points(data_pcoa[data_pcoa$inter_all=="A.G3.3months",]$V1,
+       data_pcoa[data_pcoa$inter_all=="A.G3.3months",]$V2,
+       col="blue", pch=2)
+points(data_pcoa[data_pcoa$inter_all=="B.G1.8months",]$V1,
+       data_pcoa[data_pcoa$inter_all=="B.G1.8months",]$V2,
+       col="red", pch=15)
+points(data_pcoa[data_pcoa$inter_all=="B.G1.3months",]$V1,
+       data_pcoa[data_pcoa$inter_all=="B.G1.3months",]$V2,
+       col="red", pch=0)
+points(data_pcoa[data_pcoa$inter_all=="B.G2.8months",]$V1,
+       data_pcoa[data_pcoa$inter_all=="B.G2.8months",]$V2,
+       col="red", pch=16)
+points(data_pcoa[data_pcoa$inter_all=="B.G2.3months",]$V1,
+       data_pcoa[data_pcoa$inter_all=="B.G2.3months",]$V2,
+       col="red", pch=1)
+points(data_pcoa[data_pcoa$inter_all=="B.G3.8months",]$V1,
+       data_pcoa[data_pcoa$inter_all=="B.G3.8months",]$V2,
+       col="red", pch=17)
+points(data_pcoa[data_pcoa$inter_all=="B.G3.3months",]$V1,
+       data_pcoa[data_pcoa$inter_all=="B.G3.3months",]$V2,
+       col="red", pch=2)
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+
+#NMDS and PCOA Great for visualization, but no statistical output. Then:
+
+#PERMANOVA
+# In the adonis function, variables are analysed in the order they are listed 
+permanova <- adonis(abundance~site*genotype*age, metadata, permutations=999, method="bray")
+permanova
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Redundancy Analysis (RDA)
+
+#Abundance transform, we use the relative abundance to improve Euclidean distance
+total <- apply(abundance,1,sum) #Sum rows
+relative_abundance <- abundance/total # relative abundance
+
+abundance_rda<-rda (relative_abundance ~ site*genotype*age, data=metadata)
+summary(abundance_rda)
+
+plot(abundance_rda, display = c("sp", "wa", "bp"))
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Redundancy Analysis (RDA)
+
+#Constrained ordination methods allows us to test for significance, we don't need to apply a PERMANOVA
+anova(abundance_rda)
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Redundancy Analysis (RDA)
+
+#Constrained ordination methods allows us to test for significance, we don't need to apply a PERMANOVA
+
+anova(abundance_rda, by="axis", perm.max=500) ## test axes for significance
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Redundancy Analysis (RDA)
+
+#Constrained ordination methods allows us to test for significance, we don't need to apply a PERMANOVA
+
+anova(abundance_rda, by="terms", permu=500) ## test for sig. environ. variables
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Canonical Correspondence Analysis (CCA)
+
+abundance_cca<-cca(abundance ~ site*genotype*age, data=metadata)
+summary(abundance_cca)
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Canonical Correspondence Analysis (CCA)
+
+plot(abundance_cca, display = c("wa","bp", "sp"))
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Canonical Correspondence Analysis (CCA)
+
+anova.cca(abundance_cca, perm=200)
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Canonical Correspondence Analysis (CCA)
+
+anova.cca(abundance_cca, by="axis", perm.max=200) ## test axes for significance
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#Canonical Correspondence Analysis (CCA)
+
+anova.cca(abundance_cca, by="terms", permu=200) ## test for sig. environ. variables
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#distance-based Redundancy Analysis (db-RDA)
+
+abundance_dbrda <- capscale(abundance ~ site*genotype*age,
+                            data=metadata,distance="bray")
+summary(abundance_dbrda)
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#distance-based Redundancy Analysis (db-RDA)
+
+plot(abundance_dbrda) 
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#distance-based Redundancy Analysis (db-RDA)
+
+anova(abundance_dbrda)
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#distance-based Redundancy Analysis (db-RDA)
+
+anova(abundance_dbrda, by="axis", perm.max=500) ## test axes for significance
+```
+
+```{r}
+#SPECIES COMPOSITION - ordination analysis
+#distance-based Redundancy Analysis (db-RDA)
+
+anova(abundance_dbrda, by="terms", permu=200) ## test for sig. environ. variables
+```
+
