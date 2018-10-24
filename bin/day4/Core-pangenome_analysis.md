@@ -45,7 +45,7 @@ Andrew J. Page, Carla A. Cummins, Martin Hunt, Vanessa K. Wong, Sandra Reuter, M
 
 #### Compare to echo command
 
-```echo '#!/bin/bash' >prokka.sh```
+```echo '#!/bin/bash' >prokka.sh```<br/>
 ```more prokka.sh```
 
 - Any difference?
