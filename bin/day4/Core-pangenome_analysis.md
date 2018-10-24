@@ -11,7 +11,7 @@ Whole genome annotation is the process of identifying features of interest in a 
 
 ## Standard outputs from Prokka
 
-| Tables   |      Are      |  Cool |
+| Extension| Description   |  Cool |
 |----------|:-------------:|------:|
 | col 1 is |  left-aligned | $1600 |
 | col 2 is |    centered   |   $12 |
