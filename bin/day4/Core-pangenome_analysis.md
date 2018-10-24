@@ -1,6 +1,7 @@
 # Core and Pan genome analysis tutorial
 
 ## Introduction
+- We will learn how to make a bash shell script using a for loop
 - We will generate annotations of various genomes using Prokka into a gene feature format (.gff)
 - We will use the gff files from each genome to calculate the core and pan genome across five *Exiguobacterium* genomes
 - We will use python and R ggplot2 to plot the results
