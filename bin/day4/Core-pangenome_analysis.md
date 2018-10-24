@@ -104,7 +104,7 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 
 - Compare and contrast the analysis
 
-##### Re-run Roary using MAFFT including mystery genomes 
+#### Re-run Roary using MAFFT including mystery genomes 
 
 - Mystery genomes are labeled DJ, CA, CA6 (in .gff)
 
@@ -119,3 +119,9 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 - Recreate plots in R and python <br/>
 ```roary-create_pan_genome_plots.R *Rtab```<br/>
 ```python roary_plots.py accessory_binary_genes.fa.newick gene_presence_absence.csv``` 
+
+#### Special Bonus
+- Extract RecA, 16S, gyrB sequence from the .gff file (using bash, grep, sed or other).
+- Blast the sequences (webpage or command line) tell me what CA, CA6, and DJ are.
+- Tell me what the other genomes genus is. 
+
