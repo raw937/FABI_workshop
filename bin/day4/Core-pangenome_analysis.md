@@ -92,9 +92,9 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 #### Install dependances for roary python plotting script
 
 - ```pip install numpy```
-```pip install pandas```
-```pip install matplotlib```
-```pip install seaborn```
+- ```pip install pandas```
+- ```pip install matplotlib```
+- ```pip install seaborn```
 
 #### Make Plots with roary python script
 
