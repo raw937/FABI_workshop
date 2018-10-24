@@ -33,7 +33,7 @@ White III RA, Panyala A, Glass K, Colby S, Glaesemann KR, Jansson C, Jansson JK.
 ### Compare result plots
 
 ## Run mercat on many samples
-```mkdir unknowns```
+```mkdir unknowns``` <br />
 ```mv seq* unknowns/```
 
 - With 2-mers <br />
