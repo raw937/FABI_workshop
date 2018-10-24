@@ -85,7 +85,9 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 
 ```roary -e --mafft -p 8 *.gff```
 
-### Obtain roary R plots
+### When run completes plotting functions in R and python for Roary
+
+#### Obtain roary R plots
 
 ```roary-create_pan_genome_plots.R *Rtab```
 
@@ -100,4 +102,20 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 
 ```python roary_plots.py accessory_binary_genes.fa.newick gene_presence_absence.csv``` 
 
+- Compare and contrast the analysis
 
+##### Re-run Roary using MAFFT including mystery genomes 
+
+- Mystery genomes are labeled DJ, CA, CA6 (in .gff)
+
+- Create directories and move files
+```cd roary```
+```mkdir mystery_genomes```
+```mv *gff``` 
+
+- Re-run roary using MAFFT
+```roary -e --mafft -p 8 *.gff```
+
+- Recreate plots in R and python
+```roary-create_pan_genome_plots.R *Rtab```
+```python roary_plots.py accessory_binary_genes.fa.newick gene_presence_absence.csv``` 
