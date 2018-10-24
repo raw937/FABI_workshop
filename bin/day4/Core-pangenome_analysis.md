@@ -9,7 +9,8 @@
 
 Whole genome annotation is the process of identifying features of interest in a set of genomic DNA sequences, and labelling them with useful information. Prokka is a software tool to annotate bacterial, archaeal and viral genomes quickly and produce standards-compliant output files.
 
-Prokka: rapid prokaryotic genome annotation Torsten Seemann Author Notes Bioinformatics, Volume 30, Issue 14, 15 July 2014, Pages 2068–2069, [paper](https://doi.org/10.1093/bioinformatics/btu153)
+### Paper for Prokka
+Torsten Seemann. Prokka: rapid prokaryotic genome annotation. Bioinformatics, 2014, 30 (14) 2068–2069, [paper](https://doi.org/10.1093/bioinformatics/btu153)
 
 ## Standard outputs from Prokka
 
@@ -32,5 +33,5 @@ Prokka: rapid prokaryotic genome annotation Torsten Seemann Author Notes Bioinfo
 
 Roary is a high speed stand alone pan genome pipeline, which takes annotated assemblies in GFF3 format (produced by Prokka (Seemann, 2014) and calculates the pan genome. Using a standard desktop PC, it can analyse datasets with thousands of samples, something which is computationally infeasible with existing methods, without compromising the quality of the results. 128 samples can be analysed in under 1 hour using 1 GB of RAM and a single processor. To perform this analysis using existing methods would take weeks and hundreds of GB of RAM. Roary is not intended for meta-genomics or for comparing extremely diverse sets of genomes. 
 
-Paper for Roary
-Andrew J. Page, Carla A. Cummins, Martin Hunt, Vanessa K. Wong, Sandra Reuter, Matthew T. G. Holden, Maria Fookes, Daniel Falush, Jacqueline A. Keane, Julian Parkhill, "Roary: Rapid large-scale prokaryote pan genome analysis", Bioinformatics, 2015;31(22):3691-3693 [paper](doi:10.1093/bioinformatics/btv421)
+### Paper for Roary
+Andrew J. Page, Carla A. Cummins, Martin Hunt, Vanessa K. Wong, Sandra Reuter, Matthew T. G. Holden, Maria Fookes, Daniel Falush, Jacqueline A. Keane, Julian Parkhill. Roary: Rapid large-scale prokaryote pan genome analysis. Bioinformatics, 2015, 31 (22) 3691-3693 [paper](doi:10.1093/bioinformatics/btv421)
