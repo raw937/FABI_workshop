@@ -107,6 +107,8 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 #### Re-run Roary using MAFFT including mystery genomes 
 
 - Mystery genomes are labeled DJ, CA, CA6 (in .gff)
+- You will have to edit to bash for loop to give them the right prefix
+- You must remove the --genus Exiguobacterium in your loop
 
 - Create directories and move files <br/>
 ```cd roary``` <br/>
