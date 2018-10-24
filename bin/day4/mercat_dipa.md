@@ -30,15 +30,19 @@ White III RA, Panyala A, Glass K, Colby S, Glaesemann KR, Jansson C, Jansson JK.
 ## Running mercat on a test sequence (with 10-mers)
 ```mercat -i test_mercat.fasta -k `0 -n 8```
 
+### Compare result plots
+
 ## Run mercat on many samples
 ```mkdir unknowns```
 ```mv seq* unknowns/```
 
-- With 2-mers
+- With 2-mers <br />
 ```mercat -f unknown/ -k 2 -n 8 -c 10```
 
-- With 3-mers
+- With 3-mers <br />
 ```mercat -f unknown/ -k 3 -n 8 -c 10```
 
-- With 4-mers
+- With 4-mers <br />
 ```mercat -f unknown/ -k 4 -n 8 -c 10```
+
+### Compare result plots
