@@ -46,3 +46,6 @@ White III RA, Panyala A, Glass K, Colby S, Glaesemann KR, Jansson C, Jansson JK.
 ```mercat -f unknown/ -k 4 -n 8 -c 10```
 
 ### Compare result plots
+
+### Special Bonus
+- Tell me the organism these sequences come from using BLAST (webpage or command line).
