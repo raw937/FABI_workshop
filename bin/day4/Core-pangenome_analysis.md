@@ -35,3 +35,21 @@ Roary is a high speed stand alone pan genome pipeline, which takes annotated ass
 
 ### Paper for Roary
 Andrew J. Page, Carla A. Cummins, Martin Hunt, Vanessa K. Wong, Sandra Reuter, Matthew T. G. Holden, Maria Fookes, Daniel Falush, Jacqueline A. Keane, Julian Parkhill. Roary: Rapid large-scale prokaryote pan genome analysis. Bioinformatics, 2015, 31 (22) 3691-3693 [paper](doi:10.1093/bioinformatics/btv421)
+
+## Create input for Roary using Prokka
+
+### Make a shell script for Prokka 
+
+```printf '#!/bin/bash\n' >prokka.sh```
+```more prokka.sh```
+
+#### Compare to echo command
+
+```echo '#!/bin/bash' >prokka.sh```
+```more prokka.sh```
+
+- Any difference?
+
+
+
+
