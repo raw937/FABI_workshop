@@ -5,7 +5,25 @@
 - We will use the gff files from each genome to calculate the core and pan genome across five *Exiguobacterium* genomes
 - We will use python and R ggplot2 to plot the results
 
-## More infomation about Prokka
+## More infomation about Prokka - rapid prokaryotic genome annotation
+
+Whole genome annotation is the process of identifying features of interest in a set of genomic DNA sequences, and labelling them with useful information. Prokka is a software tool to annotate bacterial, archaeal and viral genomes quickly and produce standards-compliant output files.
+
+## Standard outputs from Prokka
+
+Extension 	Description
+- .gff 	This is the master annotation in GFF3 format, containing both sequences and annotations. It can be viewed directly in Artemis or IGV.
+- .gbk 	This is a standard Genbank file derived from the master .gff. If the input to prokka was a multi-FASTA, then this will be a multi-Genbank, with one record for each sequence.
+.fna 	Nucleotide FASTA file of the input contig sequences.
+.faa 	Protein FASTA file of the translated CDS sequences.
+.ffn 	Nucleotide FASTA file of all the prediction transcripts (CDS, rRNA, tRNA, tmRNA, misc_RNA)
+.sqn 	An ASN1 format "Sequin" file for submission to Genbank. It needs to be edited to set the correct taxonomy, authors, related publication etc.
+.fsa 	Nucleotide FASTA file of the input contig sequences, used by "tbl2asn" to create the .sqn file. It is mostly the same as the .fna file, but with extra Sequin tags in the sequence description lines.
+.tbl 	Feature Table file, used by "tbl2asn" to create the .sqn file.
+.err 	Unacceptable annotations - the NCBI discrepancy report.
+.log 	Contains all the output that Prokka produced during its run. This is a record of what settings you used, even if the --quiet option was enabled.
+.txt 	Statistics relating to the annotated features found.
+.tsv 	Tab-separated file of all features: locus_tag,ftype,len_bp,gene,EC_number,COG,product
 
 ## More infomation about Roary
 
