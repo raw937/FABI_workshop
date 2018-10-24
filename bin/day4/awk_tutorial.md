@@ -46,11 +46,11 @@
 ```awk '{sum+=$5-$4} END {print sum}' PGA1_viral_nr.txt | more```
 - What is the answer?
 
-Compute the mean of column 2
+### Compute the mean of column 2
 ```awk '{x+=$2}END{print x/NR}' PGA1_viral_nr.txt | more```
 - What is the answer?
 
-Compute the mean of column 3
+### Compute the mean of column 3
 ```awk '{x+=$3}END{print x/NR}' PGA1_viral_nr.txt | more```
 - What is the answer?
 
