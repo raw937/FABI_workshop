@@ -63,8 +63,8 @@ Compute the mean of column 3
 ```awk '{print $2}' PGA1_viral_nr.txt | grep -c "NC_031073.1"```
 
 ### Find matches to a particular reference sequence in blast using awk only (no grep)
-awk '$2=="NC_031073.1" {print $2}' PGA1_viral_nr.txt | wc -l
+```awk '$2=="NC_031073.1" {print $2}' PGA1_viral_nr.txt | wc -l```
 
 ### Find matches to a particular reference sequence in blast using awk only (no grep/wc)
-awk '($2 == "NC_031073.1") {count++ } END { print count }' PGA1_viral_nr.txt | more
+```awk '($2 == "NC_031073.1") {count++ } END { print count }' PGA1_viral_nr.txt | more```
 
