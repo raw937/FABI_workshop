@@ -108,14 +108,14 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 
 - Mystery genomes are labeled DJ, CA, CA6 (in .gff)
 
-- Create directories and move files
+- Create directories and move files <br/>
 ```cd roary```
 ```mkdir mystery_genomes```
 ```mv *gff``` 
 
-- Re-run roary using MAFFT
+- Re-run roary using MAFFT <br/>
 ```roary -e --mafft -p 8 *.gff```
 
-- Recreate plots in R and python
+- Recreate plots in R and python <br/>
 ```roary-create_pan_genome_plots.R *Rtab```
 ```python roary_plots.py accessory_binary_genes.fa.newick gene_presence_absence.csv``` 
