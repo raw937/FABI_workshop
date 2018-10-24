@@ -78,8 +78,26 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 #### Use the find command to grab gff files
 
 ```find . -name "*gff" -type f -exec cp {} ./. \;```
+```mkdir roary```
+```mv *gff roary/```
 
+#### Run Roary with MAFFT
 
+```roary -e --mafft -p 8 *.gff```
 
+### Obtain roary R plots
+
+```roary-create_pan_genome_plots.R *Rtab```
+
+#### Install dependances for roary python plotting script
+
+```pip install numpy```
+```pip install pandas```
+```pip install matplotlib```
+```pip install seaborn```
+
+#### Make Plots with roary python script
+
+```python roary_plots.py accessory_binary_genes.fa.newick gene_presence_absence.csv``` 
 
 
