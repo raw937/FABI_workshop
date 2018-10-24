@@ -55,9 +55,11 @@ Andrew J. Page, Carla A. Cummins, Martin Hunt, Vanessa K. Wong, Sandra Reuter, M
 #### Use a for loop in Bash for Prokka batch shell script
 
 ```for i in *fasta; do echo "prokka "$i" --outdir "$(basename "$i" .fasta)" --genus Exiguobacterium --prefix "$(basename "$i" .fasta)"" >>prokka.sh; done```<br/>
+
 ```head prokka.sh```
 
-```#!/bin/bash
+```
+#!/bin/bash
 
 prokka 255-15.fasta --outdir 255-15 --genus Exiguobacterium --prefix 255-15
 prokka 7-3.fasta --outdir 7-3 --genus Exiguobacterium --prefix 7-3
