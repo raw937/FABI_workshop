@@ -38,9 +38,11 @@ Andrew J. Page, Carla A. Cummins, Martin Hunt, Vanessa K. Wong, Sandra Reuter, M
 
 ## Create input for Roary using Prokka
 
-### Make a shell script for Prokka 
+### Make a shell batch script for Prokka 
 
-```printf '#!/bin/bash\n' >prokka.sh```
+#### Make Bash shell header with printf command
+
+```printf '#!/bin/bash\n' >prokka.sh```<br/>
 ```more prokka.sh```
 
 #### Compare to echo command
@@ -49,6 +51,29 @@ Andrew J. Page, Carla A. Cummins, Martin Hunt, Vanessa K. Wong, Sandra Reuter, M
 ```more prokka.sh```
 
 - Any difference?
+
+#### Use a for loop in Bash for Prokka batch shell script
+
+```for i in *fasta; do echo "prokka "$i" --outdir "$(basename "$i" .fasta)" --genus Exiguobacterium --prefix "$(basename "$i" .fasta)"" >>prokka.sh; done```<br/>
+```head prokka.sh```
+
+```#!/bin/bash
+
+prokka 255-15.fasta --outdir 255-15 --genus Exiguobacterium --prefix 255-15
+prokka 7-3.fasta --outdir 7-3 --genus Exiguobacterium --prefix 7-3
+prokka GIC31.fasta --outdir GIC31 --genus Exiguobacterium --prefix GIC31
+prokka N139.fasta --outdir N139 --genus Exiguobacterium --prefix N139
+prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2```
+
+
+#### Make the Bash shell batch script executable
+
+```chmod a+x prokka.sh```
+
+#### Run shell script
+
+```./prokka.sh```
+
 
 
 
