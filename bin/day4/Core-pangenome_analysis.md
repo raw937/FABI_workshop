@@ -13,12 +13,12 @@ Whole genome annotation is the process of identifying features of interest in a 
 
 | Extension| Description           |
 |----------|:---------------------:|
-| .gff     |  left-aligned | $1600 |
+| .gff     | 	This is the master annotation in GFF3 format, containing both sequences and annotations. It can be viewed directly in Artemis or IGV. |
 | col 2 is |    centered   |   $12 |
 | col 3 is | right-aligned |    $1 |
 
 Extension 	Description
--  	This is the master annotation in GFF3 format, containing both sequences and annotations. It can be viewed directly in Artemis or IGV.
+-  
 - .gbk 	This is a standard Genbank file derived from the master .gff. If the input to prokka was a multi-FASTA, then this will be a multi-Genbank, with one record for each sequence.
 .fna 	Nucleotide FASTA file of the input contig sequences.
 .faa 	Protein FASTA file of the translated CDS sequences.
