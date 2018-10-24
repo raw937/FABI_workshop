@@ -85,6 +85,28 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 
 ```roary -e --mafft -p 8 *.gff```
 
+## While Roary is running learn how to wrangle gff formatted files 
+
+#### Make a quick copy of your gff
+
+```cp RW2.gff RW2_copy.gff```
+
+#### Print all sequences annotated in a gff file.
+
+```cut -s -f 1,9 RW2_copy.gff | grep $'\t' | cut -f 1 | sort | uniq >RW2_printed-seq.fasta```
+
+#### Determine all feature types annotated in a gff file.
+
+```grep -v '^#' RW2_copy.gff | cut -s -f 3 | sort | uniq >RW2.printed-features.txt```
+
+#### Extract all gene IDs from a gff file.
+
+```grep $'\tgene\t' RW2_copy.gff | perl -ne '/ID=([^;]+)/ and printf("%s\n", $1)' >RW2_geneIDs.txt```
+
+#### Print length of each gene in a gff file.
+
+```grep $'\tgene\t' yourannots.gff3 | cut -s -f 4,5 | perl -ne '@v = split(/\t/); printf("%d\n", $v[1] - $v[0] + 1) >RW2_genelengths.txt```
+
 ### When run completes plotting functions in R and python for Roary
 
 #### Obtain roary R plots
