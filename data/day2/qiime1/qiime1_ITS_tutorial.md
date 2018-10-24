@@ -1,1 +1,0 @@
-## Fungal ITS data
