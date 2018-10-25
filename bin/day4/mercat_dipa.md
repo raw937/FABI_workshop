@@ -28,7 +28,7 @@ White III RA, Panyala A, Glass K, Colby S, Glaesemann KR, Jansson C, Jansson JK.
 ```mercat -i test_mercat.fasta -k 4 -n 8```
 
 ## Running mercat on a test sequence (with 10-mers)
-```mercat -i test_mercat.fasta -k `0 -n 8```
+```mercat -i test_mercat.fasta -k 10 -n 8```
 
 ### Compare result plots
 
