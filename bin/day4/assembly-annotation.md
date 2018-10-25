@@ -17,7 +17,7 @@ Bankevich et al., SPAdes: A New Genome Assembly Algorithm and Its Applications t
 ## Assembly of our data
 
 #### Standard example
-     ``` spades.py -t 6 --pe1-1 seq1_R1_paired.fastq --pe1-2 seq1_R2_paired.fastq --pe1-s seq1_single-end.fastq --careful -o output/```
+     ```spades.py -t 6 --pe1-1 seq1_R1_paired.fastq --pe1-2 seq1_R2_paired.fastq --pe1-s seq1_single-end.fastq --careful -o output/```
 
 #### Annotate with Prokka
 - Try to do this on your own.
