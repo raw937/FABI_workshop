@@ -54,3 +54,9 @@ but the partner read did not.
 ```fastqc seq1_PhiR_trim_p30_R2.fastq```<br/>
 ```fastqc seq1_PhiR_trim_p30_p64_R1.fastq```<br/>
 ```fastqc seq1_PhiR_trim_p30_p64_R2.fastq```<br/>
+
+## Lost too many sequences using single end use paired end trimming
+
+```trimmomatic PE -phred33 seq1_R1.fastq seq1_R2.fastq seq1_R1_paired.fastq seq1_R1_unpaired.fastq seq1_R2_paired.fastq seq1_R2_unpaired.fastq ILLUMINACLIP:/usr/local/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:50```
+
+```
