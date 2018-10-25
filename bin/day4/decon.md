@@ -8,7 +8,7 @@
 
 #### Count the number of sequences in both fastq files
 
-```grep ">" seq1_R1.fastq | wc -l```
+```grep ">" seq1_R1.fastq | wc -l```<br/>
 ```grep ">" seq1_R2.fastq | wc -l```
 
 - What is the R1 and R2 read in Illumina sequencing?
@@ -19,7 +19,7 @@
 
 #### Run fastq on raw files
 
-```fastqc seq1_R1.fastq```
+```fastqc seq1_R1.fastq```<br/>
 ```fastqc seq1_R2.fastq```
 
 #### Format phiX174 into a bowtie2 database
@@ -30,32 +30,32 @@
 
 #### Map reads to phiX174 database using bowtie2 (local alignment)
 
-```bowtie2 -p 8 -x phiX174 -q seq1_R1.fastq -S seq1_R1.sam --very-sensitive-local```
+```bowtie2 -p 8 -x phiX174 -q seq1_R1.fastq -S seq1_R1.sam --very-sensitive-local```<br/>
 ```bowtie2 -p 8 -x phiX174 -q seq1_R2.fastq -S seq1_R2.sam --very-sensitive-local```
 
 #### Convert to bam then unmapped fastq using samtools
 
 - Convert to sam to bam
 
-```samtools view -bS seq1_R1.sam >seq1_R1.bam```
+```samtools view -bS seq1_R1.sam >seq1_R1.bam```<br/>
 ```samtools view -bS seq1_R2.sam >seq1_R2.bam```
 
 - Pull unmapped reads from bam
 
-```samtools view -b -f 4 seq1_R1.bam > seq1_R1_unaligned.bam```
+```samtools view -b -f 4 seq1_R1.bam > seq1_R1_unaligned.bam```<br/>
 ```samtools view -b -f 4 seq1_R2.bam > seq1_R2_unaligned.bam```
 
 - Convert bam into fastq
 
-```samtools bam2fq seq1_R1_unaligned.bam > seq1_R1_unaligned.fastq```
+```samtools bam2fq seq1_R1_unaligned.bam > seq1_R1_unaligned.fastq```<br/>
 ```samtools bam2fq seq1_R2_unaligned.bam > seq1_R2_unaligned.fastq```
 
 - Try grep parser for samtools bam into fastq
 
-```samtools view seq1_R1_unaligned.bam | awk 'BEGIN {FS="\t"} {print "@" $1 "\n" $10 "\n+\n" $11}' > seq1_R1_unaligned.fastq```
+```samtools view seq1_R1_unaligned.bam | awk 'BEGIN {FS="\t"} {print "@" $1 "\n" $10 "\n+\n" $11}' > seq1_R1_unaligned.fastq```<br/>
 ```samtools view seq1_R2_unaligned.bam | awk 'BEGIN {FS="\t"} {print "@" $1 "\n" $10 "\n+\n" $11}' > seq1_R2_unaligned.fastq```
 
 #### Run fastqc on unaligned reads
 
-```fastqc seq1_R1_unaligned.fastq```
+```fastqc seq1_R1_unaligned.fastq```<br/>
 ```fastqc seq1_R2_unaligned.fastq```
