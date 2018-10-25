@@ -30,19 +30,19 @@ output where both reads survived the processing, and 2 for corresponding 'unpair
 but the partner read did not.
 
 ## Standard options -> phred score of 25
-```java -jar trimmomatic-0.33.jar SE -phred33 seq1_R1_unaligned.fastq seq1_PhiR_trim_p25_R1.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:25 MINLEN:50```<br/>
+```trimmomatic SE -phred33 seq1_R1_unaligned.fastq seq1_PhiR_trim_p25_R1.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:25 MINLEN:50```<br/>
 
-```java -jar trimmomatic-0.33.jar SE -phred33 seq1_R2_unaligned.fastq seq1_PhiR_trim_p25_R2.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:25 MINLEN:50```<br/>
+```trimmomatic SE -phred33 seq1_R2_unaligned.fastq seq1_PhiR_trim_p25_R2.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:25 MINLEN:50```<br/>
 
 ## Standard options -> phred score of 30
-```java -jar trimmomatic-0.33.jar SE -phred33 seq1_R1_unaligned.fastq seq1_PhiR_trim_p30_R1.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:30 MINLEN:50```<br/>
+```trimmomatic SE -phred33 seq1_R1_unaligned.fastq seq1_PhiR_trim_p30_R1.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:30 MINLEN:50```<br/>
 
-```java -jar trimmomatic-0.33.jar SE -phred33 seq1_R2_unaligned.fastq seq1_PhiR_trim_p30_R2.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:30 MINLEN:50```<br/>
+```trimmomatic SE -phred33 seq1_R2_unaligned.fastq seq1_PhiR_trim_p30_R2.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:30 MINLEN:50```<br/>
 
 ## Standard options -> phred score of 30, phred64
-```java -jar trimmomatic-0.33.jar SE -phred64 seq1_R1_unaligned.fastq seq1_PhiR_trim_p30_p64_R1.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:30 MINLEN:50```<br/>
+```trimmomatic SE -phred64 seq1_R1_unaligned.fastq seq1_PhiR_trim_p30_p64_R1.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:30 MINLEN:50```<br/>
 
-```java -jar trimmomatic-0.33.jar SE -phred64 seq1_R2_unaligned.fastq seq1_PhiR_trim_p30_p64_R2.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:30 MINLEN:50```<br/>
+```trimmomatic SE -phred64 seq1_R2_unaligned.fastq seq1_PhiR_trim_p30_p64_R2.fastq ILLUMINACLIP:adapters/TruSeq3-SE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:30 MINLEN:50```<br/>
 
 - Based on the headers is this a phred33 or 64?
 
