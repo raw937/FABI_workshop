@@ -57,5 +57,42 @@
 
 #### Run fastqc on unaligned reads
 
+```fastqc seq1_R1.sam```<br/>
+```fastqc seq1_R2.sam```<br/>
+```fastqc seq1_R1_unaligned.bam```<br/>2.bam```
+
+- Pull unmapped reads from bam
+
+```samtools view -b -f 4 seq1_R1.bam > seq1_R1_unaligned.bam```<br/>
+```samtools view -b -f 4 seq1_R2.bam > seq1_R2_unaligned.bam```
+
+- Convert bam into fastq
+
+```samtools bam2fq seq1_R1_unaligned.bam > seq1_R1_unaligned.fastq```<br/>
+```samtools bam2fq seq1_R2_unaligned.bam > seq1_R2_unaligned.fastq```
+
+- Try grep parser for samtools bam into fastq
+
+```samtools view seq1_R1_unaligned.bam | awk 'BEGIN {FS="\t"} {print "@" $1 "\n" $10 "\n+\n" $11}' > seq1_R1_unaligned.fastq```<br/>
+```samtools view seq1_R2_unaligned.bam | awk 'BEGIN {FS="\t"} {print "@" $1 "\n" $10 "\n+\n" $11}' > seq1_R2_unaligned.fastq```
+
+#### Run fastqc on unaligned reads
+
+```fastqc seq1_R1.sam```<br/>
+```fastqc seq1_R2.sam```<br/>
+```fastqc seq1_R1_unaligned.bam```<br/>
+```fastqc seq1_R2_unaligned.bam```<br/>
 ```fastqc seq1_R1_unaligned.fastq```<br/>
 ```fastqc seq1_R2_unaligned.fastq```
+
+- Compare to raw fastq, aligned sam, unaligned bam, unaligned fastq.
+
+## Other options for converting bam to fastq
+
+#### Picard 
+```java -Xmx2g -jar Picard/SamToFastq.jar I=seq1_R1_unaligned.bam F=seq1_R1_unaligned.fastq```<br/>
+- [Picard](http://broadinstitute.github.io/picard/command-line-overview.html#SamToFastq)
+
+#### Bedtools
+```bedtools bamtofastq -i seq1_R1_unaligned.bam -fq seq1_R1_unaligned.fastq```<br/>
+```bedtools bamtofastq -i seq1_R2_unaligned.bam -fq seq1_R2_unaligned.fastq```<br/>
