@@ -1,5 +1,5 @@
 # AWK Tutorial for text wrangling
-##### With help from Prateek Shetty
+##### Written by Richard Allen White III, WSU and Prateek Shetty, Hungarian Academy of Science
 
 ## Extracting contents from blast results
 
@@ -23,7 +23,7 @@
 ```awk '$3>$5' PGA1_viral_nr.txt >PGA1_viral_nr_3L.txt```
 
 ### Count unique database matches in column 2
-```awk '{print $2}' PGA1_viral_nr.res | sort | uniq | wc -l```
+```awk '{print $2}' PGA1_viral_nr.txt | sort | uniq | wc -l```
 - The first column is the query and the second column is the match to the database
 
 ### Sum column 1 
