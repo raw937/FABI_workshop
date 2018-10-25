@@ -19,16 +19,24 @@ White III RA, Panyala A, Glass K, Colby S, Glaesemann KR, Jansson C, Jansson JK.
 - -h,    show this help message
 
 ## Running mercat on a test sequence (with 2-mers)
-```mercat -i test_mercat.fasta -k 2 -n 8```
+
+```mercat -i test_mercat.fasta -k 2 -n 8```<br />
+```mv mercat_results/ mercat_2mers/```
 
 ## Running mercat on a test sequence (with 3-mers)
-```mercat -i test_mercat.fasta -k 3 -n 8```
+
+```mercat -i test_mercat.fasta -k 3 -n 8```<br />
+```mv mercat_results/ mercat_3mers/```
 
 ## Running mercat on a test sequence (with 4-mers)
-```mercat -i test_mercat.fasta -k 4 -n 8```
+
+```mercat -i test_mercat.fasta -k 4 -n 8```<br />
+```mv mercat_results/ mercat_4mers/```
 
 ## Running mercat on a test sequence (with 10-mers)
-```mercat -i test_mercat.fasta -k 10 -n 8```
+
+```mercat -i test_mercat.fasta -k 10 -n 8```<br />
+- Why doesn't it work?
 
 ### Compare result plots
 
