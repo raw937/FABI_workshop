@@ -8,7 +8,7 @@
 
 ## More infomation about Prokka - rapid prokaryotic genome annotation
 
-Whole genome annotation is the process of identifying features of interest in a set of genomic DNA sequences, and labelling them with useful information. Prokka is a software tool to annotate bacterial, archaeal and viral genomes quickly and produce standards-compliant output files.
+Whole genome annotation is the process of identifying features of interest in a set of genomic DNA sequences, and labeling them with useful information. Prokka is a software tool to annotate bacterial, archaeal and viral genomes quickly and produce standards-compliant output files.
 
 ### Paper for Prokka
 Torsten Seemann. Prokka: rapid prokaryotic genome annotation. Bioinformatics, 2014, 30 (14) 2068–2069, [paper](https://doi.org/10.1093/bioinformatics/btu153)
