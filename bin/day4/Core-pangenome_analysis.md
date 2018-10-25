@@ -78,8 +78,8 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 #### Use the find command to grab gff files
 
 ```mkdir roary```<br/>
-```mv *gff roary/```<br/>
 ```find . -name "*gff" -type f -exec cp {} ./. \;```<br/>
+```mv *gff roary/```<br/>
 
 #### Run Roary with MAFFT
 
@@ -135,7 +135,7 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 - Create directories and move files <br/>
 ```cd roary``` <br/>
 ```mkdir mystery_genomes``` <br/>
-```mv *gff``` <br/>
+```mv *gff mystery_genomes/``` <br/>
 
 - Re-run roary using MAFFT <br/>
 ```roary -e --mafft -p 8 *.gff```
