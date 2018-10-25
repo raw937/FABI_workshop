@@ -77,9 +77,9 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 
 #### Use the find command to grab gff files
 
-```find . -name "*gff" -type f -exec cp {} ./. \;```
-```mkdir roary```
-```mv *gff roary/```
+```mkdir roary```<br/>
+```mv *gff roary/```<br/>
+```find . -name "*gff" -type f -exec cp {} ./. \;```<br/>
 
 #### Run Roary with MAFFT
 
@@ -105,7 +105,7 @@ prokka RW2.fasta --outdir RW2 --genus Exiguobacterium --prefix RW2
 
 #### Print length of each gene in a gff file.
 
-```grep $'\tgene\t' yourannots.gff3 | cut -s -f 4,5 | perl -ne '@v = split(/\t/); printf("%d\n", $v[1] - $v[0] + 1) >RW2_genelengths.txt```
+```grep $'\tgene\t' RW2_copy.gff | cut -s -f 4,5 | perl -ne '@v = split(/\t/); printf("%d\n", $v[1] - $v[0] + 1) >RW2_genelengths.txt```
 
 ### When run completes plotting functions in R and python for Roary
 
