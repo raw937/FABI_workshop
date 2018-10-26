@@ -30,10 +30,11 @@ diverse datasets and demonstrate that it results in high-quality assemblies.
 
 #### Note for the metaspades option 
 --meta   (same as metaspades.py)
-This flag is recommended when assembling metagenomic data sets. 
-Currently metaSPAdes supports only a single library which has to be paired-end (we hope to remove this restriction soon). 
-It does not support careful mode (mismatch correction is not available). In addition, you cannot specify coverage cutoff 
-for metaSPAdes. Note that metaSPAdes might be very sensitive to presence of the technical sequences remaining in the data 
+- This flag is recommended when assembling metagenomic data sets. 
+- Currently metaSPAdes supports only a single library which has to be paired-end (we hope to remove this restriction soon). 
+- It does not support careful mode (mismatch correction is not available). 
+- In addition, you cannot specify coverage cutoff for metaSPAdes. 
+- Note that metaSPAdes might be very sensitive to presence of the technical sequences remaining in the data 
 (most notably adapter readthroughs), please run quality control and pre-process your data accordingly. 
 
 ## Check for phiX174
