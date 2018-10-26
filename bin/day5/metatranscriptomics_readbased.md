@@ -23,8 +23,12 @@
 ## Manuscript
 Truong et al., MetaPhlAn2 for enhanced metagenomic taxonomic profiling. Nature Methods 12, 902-903 (2015). [paper](https://www.nature.com/articles/nmeth.3589).
 
+## Download databases place in metaphlan2 inside metaphlan2_databases folder
+```wget https://bitbucket.org/biobakery/metaphlan2/downloads/mpa_v20_m200.tar```
+```wget https://bitbucket.org/biobakery/metaphlan2/downloads/mpa_v20_m200.md5```
+
 ## Command
-```metaphlan2.py ihmp.fastq  --input_type fastq --nproc 6 > ihmp_profile.txt```
+```metaphlan2.py ihmp.fastq --input_type fastq --nproc 6 > ihmp_profile.txt```
 
 ## For heatmap install hclust
 ```brew tap biobakery/biobakery```
