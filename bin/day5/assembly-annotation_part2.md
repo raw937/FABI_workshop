@@ -19,13 +19,13 @@ Bankevich et al., SPAdes: A New Genome Assembly Algorithm and Its Applications t
 
 ## Paper metaspades
 
-metaSPAdes: a new versatile de novo metagenomics assembler
-Sergey Nurk, Dmitry Meleshko, Anton Korobeynikov, Pavel Pevzner
-While metagenomics has emerged as a technology of choice for analyzing bacterial populations, 
-assembly of metagenomic data remains difficult thus stifling biological discoveries. metaSPAdes 
-is a new assembler that addresses the challenge of metagenome analysis and capitalizes on 
+metaSPAdes: a new versatile de novo metagenomics assembler. Sergey Nurk, Dmitry Meleshko, Anton Korobeynikov, Pavel Pevzner. [paper](https://genome.cshlp.org/content/27/5/824.long). 
+- While metagenomics has emerged as a technology of choice for analyzing bacterial populations, 
+assembly of metagenomic data remains difficult thus stifling biological discoveries. 
+- MetaSPAdes is a new assembler that addresses the challenge of metagenome analysis and capitalizes on 
 computational ideas that proved to be useful in assemblies of single cells and highly polymorphic 
-diploid genomes. We benchmark metaSPAdes against other state-of-the-art metagenome assemblers across 
+diploid genomes. 
+- We benchmark metaSPAdes against other state-of-the-art metagenome assemblers across 
 diverse datasets and demonstrate that it results in high-quality assemblies. 
 
 #### Note for the metaspades option 
@@ -35,6 +35,12 @@ Currently metaSPAdes supports only a single library which has to be paired-end (
 It does not support careful mode (mismatch correction is not available). In addition, you cannot specify coverage cutoff 
 for metaSPAdes. Note that metaSPAdes might be very sensitive to presence of the technical sequences remaining in the data 
 (most notably adapter readthroughs), please run quality control and pre-process your data accordingly. 
+
+## Check for phiX174
+- Try this on your own
+
+## Trim reads and check with fastqc
+- Try this on your own
 
 ## Assembly of our data
 
