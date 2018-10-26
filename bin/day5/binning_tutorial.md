@@ -36,13 +36,13 @@ This blog post contains links to the binning and profiling results for those dat
 Low	Simulated Illumina HiSeq data, 15Gbp	2 x 150bp	270bp
 
 #### Fast test data set for Maxbin2
-run_MaxBin.pl -contig 80x.scaffold -abund 80x.abund -out 80x_bins
+```run_MaxBin.pl -contig 80x.scaffold -abund 80x.abund -out 80x_bins```
 
 #### Low complexity Maxbin2 test data set
-run_MaxBin.pl -contig simLC+.scaffolds -abund simLC+.abund -out simLC+_bins
+```run_MaxBin.pl -contig simLC+.scaffolds -abund simLC+.abund -out simLC+_bins```
 
 #### CAMI with read mapping 
-run_MaxBin.pl -contig RL_S001_insert_270.fa -abund gs_read_mapping.binning -out cami_lc
+```run_MaxBin.pl -contig RL_S001_insert_270.fa -abund gs_read_mapping.binning -out cami_lc```
 
 #### CAMI with reads and contigs complete maxbin2
-run_MaxBin.pl -contig RL_S001_insert_270.fa -reads RL_S001_insert_270.fq -out cami_lc_reads
+```run_MaxBin.pl -contig RL_S001_insert_270.fa -reads RL_S001_insert_270.fq -out cami_lc_reads```
