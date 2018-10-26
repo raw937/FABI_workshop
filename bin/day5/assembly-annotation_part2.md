@@ -46,7 +46,8 @@ diverse datasets and demonstrate that it results in high-quality assemblies.
 ## Assembly of our data
 
 #### Standard example
-```metaspades.py -t 6 --s YukonMB.all.PhiR.fastq.gz -o yukonMB/```
+```spades.py -t 6 --s YukonMB.all.PhiR.fastq.gz -o yukonMB/```
+-Can't run metaspades on single end. 
 
 #### Annotate with Prokka
 - Try to do this on your own.
