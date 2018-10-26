@@ -47,7 +47,7 @@ diverse datasets and demonstrate that it results in high-quality assemblies.
 
 #### Standard example
 
-```spades.py -t 6 --s YukonMB.all.PhiR.fastq.gz -o yukonMB/```
+```spades.py -t 6 -s YukonMB.all.PhiR.fastq.gz -o yukonMB/```
 
 -Can't run metaspades on single end. 
 
