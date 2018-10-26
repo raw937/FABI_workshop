@@ -53,3 +53,13 @@ diverse datasets and demonstrate that it results in high-quality assemblies.
 
 #### Annotate with Prokka
 - Try to do this on your own.
+
+#### Metaspades example with paired end Illumina from IBD virome
+
+```spades.py --meta --pe1-1 SM-76CY_R1.fastq --pe1-2 SM-76C9Y_R2.fastq -o virome_SM```
+
+#### Annotate IBD virome with Prokka
+- Try to do this on your own.
+
+
+
