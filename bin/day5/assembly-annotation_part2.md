@@ -1,4 +1,4 @@
-# *De novo* assembly of metagenomic reads
+# *De novo* assembly of metagenomic reads - part2
 
 1. Assembly of Clinton Creek Yukon Microbialite metagenome using metaspades
 - phiX174 has been removed 
@@ -6,6 +6,9 @@
 - You should trim the reads and use fastqc
 2. Spades is an excellent assembler for metagenomic, metatranscriptomic, genomes and even moleculo reads
 3. Metaspades is a version of spades for metagenomes
+
+## About the data
+RA White III, IM Power, GM Dipple, G Southam, CA Suttle. Metagenomic analysis reveals that modern microbialites and polar microbial mats have similar taxonomic and functional potential. Frontiers in microbiology 6, 966 [paper](https://www.frontiersin.org/articles/10.3389/fmicb.2015.00966/full)
 
 ## SPAdes – St. Petersburg genome assembler – is an assembly toolkit containing various assembly pipelines. 
 - SPAdes version 3.13.0 was released under GPLv2 [current version](http://cab.spbu.ru/software/spades/)
