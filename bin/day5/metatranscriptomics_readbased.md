@@ -8,7 +8,7 @@
 #### MetaPhlAn 2.0 can be obtained Through Bioconda
 ```conda install metaphlan2```
 
-#### MetaPhlAn2 is a computational tool for profiling the composition of microbial communities (Bacteria, Archaea, Eukaryotes and Viruses) from metagenomic shotgun sequencing data (i.e. not 16S) with species-level. With the newly added StrainPhlAn module, it is now possible to perform accurate strain-level microbial profiling.
+##### MetaPhlAn2 is a computational tool for profiling the composition of microbial communities (Bacteria, Archaea, Eukaryotes and Viruses) from metagenomic shotgun sequencing data (i.e. not 16S) with species-level.
 
 #### MetaPhlAn 2 relies on ~1M unique clade-specific marker genes  
 
