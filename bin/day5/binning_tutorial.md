@@ -27,9 +27,9 @@ from multiple metagenomic datasets, Bioinformatics, 32(4): 605-607, 2016.
 CAMI (Critical Assessment of Metagenome Interpretation) is a community-led initiative designed to help tackle the 
 problems faced by metagenomics analyses, aiming for an independent, comprehensive and bias-free evaluation of these 
 metagenomics pipelines [source]. As part of the challenge, several simulated datasets were generated in order to evaluate 
-each of the assembly, profiling, and binning tools submitted for review. Three distinct datasets were generated simulating 
-microbiomes of varying complexities: low, medium, and high complexity.
-[paper] (http://biorxiv.org/content/early/2017/01/09/099127). 
+each of the assembly, profiling, and binning tools submitted for review. 
+Three distinct datasets were generated simulating microbiomes of varying complexities: low, medium, and high complexity.
+[paper](http://biorxiv.org/content/early/2017/01/09/099127). 
 This blog post contains links to the binning and profiling results for those datasets.
 
 #### Our data data
